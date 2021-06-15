@@ -65,6 +65,7 @@ def scraper ():
         zipcodes = file.readlines()
         
     # Loop for each zip code in list
+    valid_rows = 0
     zipcodes_num = len(zipcodes)
     for zipcode in zipcodes: 
         
@@ -72,21 +73,19 @@ def scraper ():
         if not globals.loading: 
             break
         
-        # Logs and status
-        index = zipcodes.index(zipcode) + 1
-        log.update_status(f'Scraping zipcode {zipcode} ({index} / {zipcodes_num})')
-        
         # Instance of selenium and load page
         zipcode_formated = zipcode.replace("\n", "")
         page = f"https://crimegrade.org/safest-places-in-{zipcode_formated}/"
         scraper = Web_scraping(page, headless=True, user_agent=True)
         
+        # Logs and status
+        index = zipcodes.index(zipcode) + 1
+        log.update_status(f'Scraping zipcode {zipcode_formated} ({index} / {zipcodes_num})')
+        
         # Skip no found pages
         h1 = scraper.get_text("h1")
         if h1 == "No Results Found": 
             continue
-        
-        
         
         tables_selectors = [
             "p + .one_third", 
@@ -122,9 +121,14 @@ def scraper ():
         
         # Send data to database
         globals.db_manager.insert_rows (output_table, columns, [values], nstring=False)
+        valid_rows += 1
                 
         # End browser
         scraper.end_browser()
+        
+    # End loading
+    globals.loading = False
+    globals.status += f"\nRows in database: {valid_rows}"
             
 if __name__ == "__main__":
     globals.loading = True
