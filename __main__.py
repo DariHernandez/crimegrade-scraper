@@ -1,9 +1,11 @@
-import PySimpleGUI as sg
-import globals
-import config
+import os
 import log
-import sniim_run
+import config
+import globals
+import subprocess
+import PySimpleGUI as sg
 from gui_manager import gui
+from database.postgresql import PostgreSQL
 
 def main (): 
     """Main function of the project with gui
@@ -34,11 +36,12 @@ def main ():
     # Main screedn layout
     layout = [
         [
-          sg.Button("Run", size=(33,1), key="run"),  
+          sg.Button("Run", size=(43,1), key="run"),  
         ],
         [
             sg.Button("Theme", size=(8,1), key="Theme"), 
-            sg.Button("Settings", size=(12,1), key="config"),  
+            sg.Button("Database", size=(10,1), key="database"),  
+            sg.Button("Zip Codes", size=(10,1), key="zipcodes"),  
             sg.Button("Exit", size=(8,1), key="Quit"),
         ]
     ]
@@ -84,6 +87,24 @@ def main ():
             
             # Show config gui
             config_gui()
+            
+        if event == "database": 
+            
+            # Update credentials
+            gui.database(PostgreSQL)
+            
+            # table = "table_2"
+            # columns = ["usuario", "contraseña"]
+            # data = [["d", "a"]]
+            
+            # globals.db_manager.insert_rows (table, columns, data)
+            
+            
+        if event == "zipcodes": 
+            
+            zipcodes_file = os.path.join (os.path.dirname(__file__), "zipcodes.txt")
+            subprocess.Popen(zipcodes_file, shell=True)
+            
                     
     # End window
     window.close()
@@ -91,61 +112,6 @@ def main ():
     # Reopen window after changes
     if reopen: 
         main()
-        
-def config_gui (): 
-    """ Update crdentials and user options
-    """
-    
-    # Get theme from config file
-    theme = config.get_credential("theme")
-                
-    # Set theme
-    sg.theme(theme)
-    
-    # Main screed layout
-    layout = [
-        [
-            sg.Text ("CREDENTIALS", size=(20,1)),  
-        ],
-        [
-            sg.Text ("", size=(20,1)),  
-        ],
-        [
-            sg.Button ("Save", key="save"),  
-        ],
-    ]
-        
-    # Create window
-    window = sg.Window("Configuración", layout, no_titlebar=False)
-    
-    while True:
-        
-        
-        reopen = False
-    
-        event, values = window.read()
-        
-        # RUN BUTTONS                 
-        
-        # End program when close windows
-        if event == sg.WIN_CLOSED or event == 'Quit':
-            
-            # Restart last credentials
-    
-            break
-        
-        if event == "save": 
-            
-            # Update credentials
-            
-            break     
-                    
-    # End window
-    window.close()
-    
-    # Reopen window after changes
-    if reopen: 
-        config_gui()
 
 if __name__ == "__main__":
     main()
