@@ -17,22 +17,6 @@ def main ():
     
     # Get theme from config file
     theme = config.get_credential("theme")
-    
-    # Create json file if it doesn't exist
-    if not theme: 
-        
-        config_data = {
-            "theme": "Dark2",
-            "rows": 3, 
-            "db_server": "", 
-            "db_name": "",
-            "db_user": "", 
-            "db_password": "",
-        }
-        
-        theme = config_data["theme"]
-        
-        config.create_config(config_data)
                 
     # Set theme
     sg.theme(theme)
