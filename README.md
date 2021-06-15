@@ -1,12 +1,16 @@
-# [PROJECT NAME]
+# CRIMEGRADE SCRAPER
 **python version: 3.9**
 
-[description]
+Extract data from different zip codes, in page: crimegrade.org. 
+Save output data in PostgreSQL database. 
 
-# How to use
+Project with GUI
+
+
+# Install
 ## Tird party modules
 
-Install modules from pip
+Install all modules from pip: 
 
 ``` bash
 $ pip install -r requirements.txt
@@ -14,8 +18,47 @@ $ pip install -r requirements.txt
 
 ## Programs
 
-[programs to install]
+To run the project, the following programs must be installed:: 
 
-## Run the program
+* [Google Chrome](https://www.google.com/intl/es/chrome) last version
 
-Run the main.py file, with your python 3.9 compiller. 
+# Run the program
+
+## GUI
+
+For **start** the program with **graphic interface**, **run** the file **__ main__.py** with you **python 3.9** interpreter.
+
+The graphical interface, in addition to allowing you to run the program, will make it easier for you to configure it (more details in the configuration section).
+
+![Home](https://i.imgur.com/XVKcDHu.png)
+
+## Terminal
+
+To **start** the program **in terminal** / without interfaz, **run** the **crimegrade_scraper.py** file with your **python 3.9** interpreter.
+
+Executing the program in this way **it will not be possible to update the configurations** and it will be executed with the **last configuration** (more details in the next).
+
+Ejecutando el programa de esta forma **no se podrán actualizar las configuraciones** y se ejecutará con la **última configuración establecida** (mas detalles en la sección de configuración). 
+
+# Configuration / setting
+
+## Home
+
+![Config screen 1](https://i.imgur.com/XVKcDHu.png)
+
+On the home screen, you must **write the name of the table** where the **scraping data** will be **saved**.
+If the **table does not exist** in the database, **the program will create it**.
+
+### DATABASE
+
+![Config screen 2](https://i.imgur.com/NxUdYAp.png)
+
+To configure the database, we need to set our credentials:
+* **Server**
+* **Database name**
+* **User**
+* **Password**
+
+## config.json
+
+All **configurations** are saved in the **config.json file**, so **you can edit it manually** without the graphical interface.
