@@ -40,3 +40,13 @@ def update_credential (credential="", value=""):
     
     with open (config_path, "w") as config_file:
         config_file.write(json.dumps(config_data))
+
+def update_credentials (credentials, values): 
+    """
+    Update credentials
+    """
+    
+    for cred_config, cred_gui in credentials.items(): 
+        
+        new_credential = values[cred_gui]
+        update_credential (cred_config, new_credential)
