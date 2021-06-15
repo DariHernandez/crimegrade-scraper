@@ -3,6 +3,7 @@ import log
 import config
 import globals
 import subprocess
+import crimegrade_scraper
 import PySimpleGUI as sg
 from gui_manager import gui
 from database.postgresql import PostgreSQL
@@ -10,6 +11,9 @@ from database.postgresql import PostgreSQL
 def main (): 
     """Main function of the project with gui
     """
+    
+    # Get credentials for main gui
+    output_table = config.get_credential("output_table")
     
     # Get theme from config file
     theme = config.get_credential("theme")
@@ -36,7 +40,13 @@ def main ():
     # Main screedn layout
     layout = [
         [
-          sg.Button("Run", size=(43,1), key="run"),  
+            sg.Text("Output table:"),  
+        ],
+        [
+            sg.Input(size=(50,1), default_text=output_table, key="output_table"),  
+        ],
+        [
+            sg.Button("Run", size=(43,1), key="run"),  
         ],
         [
             sg.Button("Theme", size=(8,1), key="Theme"), 
@@ -47,7 +57,7 @@ def main ():
     ]
     
     # Create window
-    window = sg.Window("Program name", layout, no_titlebar=False)
+    window = sg.Window("CRIMGRADE SCRAPER", layout, no_titlebar=False)
     
     while True:
         
@@ -55,6 +65,9 @@ def main ():
         reopen = False
     
         event, values = window.read()
+        
+        # Update credentials 
+        config.update_credential("output_table", values["output_table"])
         
         # RUN BUTTONS                 
                    
@@ -77,9 +90,8 @@ def main ():
             
             # Show loading status and run main function in thread
             
-            # gui.loading(sniim_run.run)            
-            # gui.show_status("Programa terminado. Estatus final:")
-            print ("Running...")
+            gui.loading(crimegrade_scraper.scraper)            
+            gui.show_status("Program end. Final status:")
             
         if event == "config":
             
