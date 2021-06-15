@@ -170,7 +170,7 @@ def loading (thread_function=None):
     ]
     
     # Create window
-    window = sg.Window("Extracting articles", layout, no_titlebar=False, keep_on_top=True)
+    window = sg.Window("Loading...", layout, no_titlebar=False, keep_on_top=True)
     
     reopen = False 
 
