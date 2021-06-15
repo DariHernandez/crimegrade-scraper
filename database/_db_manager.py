@@ -1,7 +1,6 @@
 import os
 import sys
 import datetime
-import pymssql
 
 currentdir = os.path.dirname(__file__)
 parentdir = os.path.dirname(currentdir)
@@ -44,31 +43,7 @@ class _DB_manager ():
         Connect to database and return cursor
         """
         
-        try: 
-            self.connection.cursor()
-        except AttributeError: 
-            
-            try:
-                self.connection = pymssql.connect(server=self.server, user=self.username, password=self.password, database=self.database)
-            except Exception as err:
-                error_mensssage = "ERROR TO CONNECT TO DATABASE\n\nDetails: \n\n"
-                
-                # Clean error mensaje
-                err = str(err).replace("\\n", "\n")
-                chars = ["(", ")", 'b"', '"']
-                
-                for char in chars:
-                    err = str(err).replace(char, "")           
-                
-                error_mensssage += err
-                
-                # Logs and status 
-                log.update_status(error_mensssage)
-                globals.loading = False
-                
-                return None, None
-        
-        return  self.connection, self.connection.cursor()
+        raise NotImplementedError("Please Implement this method")
     
     def run_sql (self, sql): 
         """ Exceute sql code
@@ -76,39 +51,7 @@ class _DB_manager ():
         Run sql code in the current data base, and commit it
         """
         
-        connection, cursor = self.get_cursor_connector()
-        if connection:
-           
-            # Try to run sql  
-            try: 
-                cursor.execute (sql)
-            except Exception as err:
-                
-                error_mensssage = "ERROR TO RUN SQL\n\nDetails: \n\n"
-                
-                # Clean error mensaje
-                err = str(err).replace("\\n", "\n")
-                chars = ["(", ")", 'b"', '"']
-                
-                for char in chars:
-                    err = str(err).replace(char, "")           
-                
-                error_mensssage += err
-                
-                # Logs and status 
-                log.update_status(error_mensssage)
-                globals.loading = False
-                
-                return None
-            
-            # try to get returned part
-            try: 
-                results = cursor.fetchall() 
-            except: 
-                results = None
-                
-            connection.commit()    
-            return results
+        raise NotImplementedError("Please Implement this method")
             
     
     def truncate_table (self, table): 
