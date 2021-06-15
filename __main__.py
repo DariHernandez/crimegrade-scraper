@@ -1,8 +1,8 @@
 import os
+import subprocess
 import log
 import config
 import globals
-import subprocess
 import crimegrade_scraper
 import PySimpleGUI as sg
 from gui_manager import gui

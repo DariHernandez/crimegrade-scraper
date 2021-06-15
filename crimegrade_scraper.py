@@ -1,10 +1,9 @@
 import os
 import time
-import bs4
-import requests
-import globals
-import config
 import log
+import config
+import globals
+import requests
 from database.postgresql import PostgreSQL
 from scraping_manager.automate import Web_scraping
 

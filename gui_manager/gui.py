@@ -1,7 +1,7 @@
-import json
 import os
-import threading
+import json
 import time
+import threading
 import globals
 import config
 import PySimpleGUI as sg

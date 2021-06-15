@@ -1,4 +1,5 @@
-import json, os
+import os
+import json
 
 current_file = os.path.basename(__file__)
 current_folder = os.path.dirname(__file__)  
