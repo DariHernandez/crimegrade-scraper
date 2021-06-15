@@ -140,9 +140,10 @@ def show_status (pre_text="Process end."):
     # Show results
     if not "Loading" in globals.status:
         playsound(sound_file)
+        time.sleep(0.5)
         sg.popup_ok(f"{pre_text} \n\n{globals.status}")   
         
-    time.sleep(3)
+    time.sleep(2)
                 
 def loading (thread_function=None): 
     """
