@@ -53,7 +53,7 @@ def theme_selector ():
     # Close
     window_theme.close()
 
-def data_base (): 
+def database (db_class): 
     """
     GUI for data base configuration
     """
@@ -68,9 +68,9 @@ def data_base ():
     }
     
     # Get default values
-    db_server   = config.get_credential("db_server")
-    db_name     = config.get_credential("db_name")
-    db_user     = config.get_credential("db_user")
+    db_server = config.get_credential("db_server")
+    db_name = config.get_credential("db_name")
+    db_user = config.get_credential("db_user")
     db_password = config.get_credential("db_password")
     
     # Set theme from gui module
@@ -118,15 +118,14 @@ def data_base ():
             break
     
         if event == 'btn_save':
-            # Update credentials and data base manager
-            config.update_credentials (values, credentials)
             
-            globals.db_manager = DB_manager (
-                values["input_db_server"], 
-                values["input_db_name"], 
-                globals.tables, 
-                values["input_db_user"], 
-                values["input_db_password"])
+            # Update credentials and data base manager
+            config.update_credentials (credentials, values)
+            
+            globals.db_manager = db_class (values["input_db_server"], 
+                                           values["input_db_name"], 
+                                           values["input_db_user"], 
+                                           values["input_db_password"])
                 
             break
 
