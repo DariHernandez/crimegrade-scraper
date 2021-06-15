@@ -62,12 +62,9 @@ class _DB_manager ():
                 
                 error_mensssage += err
                 
-                # End program and print status
-                globals.status = error_mensssage
-                globals.running = False
-                
-                # Logs
-                log.error(globals.status, print_text=True)
+                # Logs and status 
+                log.update_status(error_mensssage)
+                globals.loading = False
                 
                 return None, None
         
@@ -98,12 +95,9 @@ class _DB_manager ():
                 
                 error_mensssage += err
                 
-                # End program and print status
-                globals.status = error_mensssage
-                globals.running = False
-                
-                # Logs
-                log.error(globals.status)
+                # Logs and status 
+                log.update_status(error_mensssage)
+                globals.loading = False
                 
                 return None
             
@@ -146,7 +140,7 @@ class _DB_manager ():
         # Logs
         log.info("All tables truncated")
     
-    def insert_rows (self, table="", columns=[], data=[]): 
+    def insert_rows (self, table="", columns=[], data=[], nstring=True): 
         """
         Insert a list of rows in specific table
         """
@@ -156,7 +150,7 @@ class _DB_manager ():
         for row in data:
             
             columns_query = self.__get_sql_from_list__ (columns, nstring=False, quotes=False)
-            values_query = self.__get_sql_from_list__ (row, nstring=True, quotes=True)
+            values_query = self.__get_sql_from_list__ (row, nstring=nstring, quotes=True)
             
             sql = "INSERT INTO {} ({}) VALUES ({})".format (table, columns_query, values_query)
             
@@ -267,7 +261,7 @@ class _DB_manager ():
         sql += f"CREATE TABLE {table_name} ("
         sql += columns_formated_sql
         sql += ")"
-        
+                
         self.run_sql(sql)
 
         # Logs

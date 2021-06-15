@@ -12,6 +12,21 @@ import log
 
 class PostgreSQL (_DB_manager): 
     
+    def credentials_error (self, err): 
+        """
+        Print credential error and update status
+        """
+        
+        error_formated = "Database conecction error."
+        error_formated += "\nPlease check your credentials.\n"
+        
+        # Logs and status 
+        log.update_status(error_formated)
+        globals.loading = False
+        
+        log.error(err)
+        
+    
     def get_cursor_connector (self): 
         """
         Connect to postgresql database and return cursor
@@ -28,12 +43,7 @@ class PostgreSQL (_DB_manager):
                                             password=self.password)
             except Exception as err: 
                 
-                # End program and print status
-                globals.status = err
-                globals.running = False
-                
-                # Logs
-                log.error(globals.status, print_text=True)
+                self.credentials_error(err)
 
                 return None
         
@@ -52,12 +62,7 @@ class PostgreSQL (_DB_manager):
             cursor.execute (sql)
         except Exception as err:
             
-            # End program and print status
-            globals.status = err
-            globals.running = False
-            
-            # Logs
-            log.error(globals.status, print_text=True)
+            self.credentials_error(err)
             
             return None
         
