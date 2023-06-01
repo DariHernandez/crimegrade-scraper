@@ -16,8 +16,8 @@
 
 # Crimegrade Scraper
 
-Extract data from different zip codes, in page: crimegrade.org. Save output data in PostgreSQL database.\r
-\r
+Extract data from different zip codes, in page: crimegrade.org. Save output data in PostgreSQL database.
+
 Project with GUI
 
 Start date: **2021-01-14**
@@ -42,59 +42,59 @@ Project type: **client's project**
 
 # Install
 
-## Tird party modules\r
-\r
-Install all modules from pip: \r
-\r
-\\`\\`\\` bash\r
-$ pip install -r requirements.txt\r
-\\`\\`\\`\r
-\r
-## Programs\r
-\r
-To run the project, the following programs must be installed:: \r
-\r
+## Tird party modules
+
+Install all modules from pip: 
+
+``` bash
+$ pip install -r requirements.txt
+```
+
+## Programs
+
+To run the project, the following programs must be installed:: 
+
 * [Google Chrome](https://www.google.com/intl/es/chrome) last version
 
 # Settings
 
-## Home\r
-\r
-![Config screen 1](https://github.com/darideveloper/crimegrade-scraper/blob/master/imgs/home.PNG?raw=true)\r
-\r
-On the home screen, you must **write the name of the table** where the **scraping data** will be **saved**.\r
-If the **table does not exist** in the database, **the program will create it**.\r
-\r
-### DATABASE\r
-\r
-![Config screen 2](https://github.com/darideveloper/crimegrade-scraper/blob/master/imgs/database.PNG?raw=true)\r
-\r
-To configure the database, we need to set our credentials:\r
-* **Server**\r
-* **Database name**\r
-* **User**\r
-* **Password**\r
-\r
-## config.json\r
-\r
+## Home
+
+![Config screen 1](https://github.com/darideveloper/crimegrade-scraper/blob/master/imgs/home.PNG?raw=true)
+
+On the home screen, you must **write the name of the table** where the **scraping data** will be **saved**.
+If the **table does not exist** in the database, **the program will create it**.
+
+### DATABASE
+
+![Config screen 2](https://github.com/darideveloper/crimegrade-scraper/blob/master/imgs/database.PNG?raw=true)
+
+To configure the database, we need to set our credentials:
+* **Server**
+* **Database name**
+* **User**
+* **Password**
+
+## config.json
+
 All **configurations** are saved in the **config.json file**, so **you can edit it manually** without the graphical interface.
 
 # Run
 
-## GUI\r
-\r
-For **start** the program with **graphic interface**, **run** the file **__ main__.py** with you **python 3.9** interpreter.\r
-\r
-The graphical interface, in addition to allowing you to run the program, will make it easier for you to configure it (more details in the configuration section).\r
-\r
-![Home](https://github.com/darideveloper/crimegrade-scraper/blob/master/imgs/home.PNG?raw=true)\r
-\r
-## Terminal\r
-\r
-To **start** the program **in terminal** / without interfaz, **run** the **crimegrade_scraper.py** file with your **python 3.9** interpreter.\r
-\r
-Executing the program in this way **it will not be possible to update the configurations** and it will be executed with the **last configuration** (more details in the next).\r
-\r
-Ejecutando el programa de esta forma **no se podrán actualizar las configuraciones** y se ejecutará con la **última configuración establecida** (mas detalles en la sección de configuración).
+## GUI
+
+For **start** the program with **graphic interface**, **run** the file **__ main__.py** with you **python 3.9** interpreter.
+
+The graphical interface, in addition to allowing you to run the program, will make it easier for you to configure it (more details in the configuration section).
+
+![Home](https://github.com/darideveloper/crimegrade-scraper/blob/master/imgs/home.PNG?raw=true)
+
+## Terminal
+
+To **start** the program **in terminal** / without interfaz, **run** the **crimegrade_scraper.py** file with your **python 3.9** interpreter.
+
+Executing the program in this way **it will not be possible to update the configurations** and it will be executed with the **last configuration** (more details in the next).
+
+Ejecutando el programa de esta forma **no se podrÃ¡n actualizar las configuraciones** y se ejecutarÃ¡ con la **Ãºltima configuraciÃ³n establecida** (mas detalles en la secciÃ³n de configuraciÃ³n).
 
 
